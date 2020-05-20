@@ -1,0 +1,67 @@
+@font-face {
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+}
+
+body {
+    background-color: #363636;
+    color: azure;
+    font-family:'Roboto', sans-serif;
+}
+.container  {
+    background-color:#1c1c1c;
+    width: 65%;
+    margin-top: 5px;
+    padding: 15px;;
+    box-shadow:  5px 10px 8px #1a1a1a;
+}
+.content-head {
+    background-image:url("../img/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: -15px;
+    height: 150px;
+}
+#loginSignUp {
+  float: right;
+  font-size: 12px;
+  font-weight: bold;
+  padding: .5em;
+}
+#loginSignUp a {
+  color: #FFFFFF;
+}
+.form-group input {
+    width: 50%;
+}
+
+nav {
+    background-color:#383838;
+}
+nav p {
+    margin-top: 10px;
+}
+nav a {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.nav-link {
+    margin-left: 3px;
+    display: inline;
+}
+.content-body {
+    padding: 5px;
+}
+footer {
+    text-align: center;
+}
+
+
+@media screen and (max-width: 606px) {
+    nav  a{
+    color: red;
+    }
+    .nav-link {
+        display: block;
+        text-align: center;
+    }
+  }
