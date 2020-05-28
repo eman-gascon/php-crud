@@ -1,4 +1,7 @@
-
+<?php
+include('conn.php');
+session_start();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,28 +20,67 @@
   </head>
   <body>
   <div class="container">
-  <div class="content-head"><div class="content-head-body"><span id = "loginSignUp"><a href = "login.php">Login</a> | <a href = "signup.php">Sign Up</a></span></div></div>
+  <div class="content-head">
+  <div class="content-head-body">
+
+<?php
+//Change the hyperliks if the User is already login and show logut button
+if(!isset($_SESSION['login_user'])){
+   echo "<span id = 'loginSignUp'><a href = 'login.php'>Login</a> | <a href = 'signup.php'>Sign Up</a></span>";
+
+} else {
+     echo "<span id = 'loginSignUp'><a href = 'logout.php'>Logout</a></span>";
+}
+?>
+
+
+
+  </div></div>
+
   <div class="navigation">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="index.php">CRUD</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+
+    <?php
+    //Change the hyperliks if the User is already login and show logut button
+    if(!isset($_SESSION['login_user'])){
+      echo "
+      <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+          <a class='navbar-brand' href='index.php'>HOME</a>
+          <button class='navbar-toggler' type='button' data-toggle='collapse' data-target = '#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+            <span class='navbar-toggler-icon'></span>
           </button>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="create.php">CREATE</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="read.php">READ</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="update.php">UPDATE</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="delete.php">DELETE</a>
-              </li>
-            </ul>
-          </div>
         </nav>
+      ";
+
+    } else {
+         echo "
+         <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+             <a class='navbar-brand' href='index.php'>HOME</a>
+             <button class='navbar-toggler' type='button' data-toggle='collapse' data-target = '#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+               <span class='navbar-toggler-icon'></span>
+             </button>
+             <div class='collapse navbar-collapse'>
+               <ul class='navbar-nav'>
+                 <li class='nav-item'>
+                   <a class='nav-link' href='create.php'>CREATE</a>
+                 </li>
+                 <li class='nav-item'>
+                   <a class='nav-link' href='read.php'>READ</a>
+                 </li>
+                 <li class='nav-item'>
+                   <a class='nav-link' href='update.php'>UPDATE</a>
+                 </li>
+                 <li class='nav-item'>
+                   <a class='nav-link' href='delete.php'>DELETE</a>
+                 </li>
+               </ul>
+             </div>
+           </nav>
+         ";
+    }
+    ?>
+
+
+
+
+
     </div>

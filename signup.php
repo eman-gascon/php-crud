@@ -7,13 +7,12 @@
 if (isset($_POST['submit']))
 {
 //Set Variables
-$username = $_POST['username'];
-$password = md5($_POST['password']);
-$repassword = md5($_POST['repassword']);
-$email = $_POST['email'];
-
-$usernameLength = strlen($username);
-$passwordLength = strlen($password);
+$username = mysqli_real_escape_string($conn, $_POST['username']);
+$password = mysqli_real_escape_string($conn, md5($_POST['password']));
+$repassword = mysqli_real_escape_string($conn, md5($_POST['repassword']));
+$email = mysqli_real_escape_string($conn, $_POST['email']);
+$usernameLength = mysqli_real_escape_string($conn, strlen($username));
+$passwordLength = mysqli_real_escape_string($conn, strlen($password));
 
 //Validation
 if ($username === "") {
@@ -22,70 +21,64 @@ if ($username === "") {
 Username is required!
   </div>";
 }
-if ($password === "") {
+elseif ($password === "") {
   echo "
   <div class='alert alert-danger' role='alert'>
 Passwored is required!
   </div>";
 }
-if ($repassword === "") {
+elseif  ($repassword === "") {
   echo "
   <div class='alert alert-danger' role='alert'>
 Retype passwored is required!
   </div>";
 }
-if ($email === "") {
+elseif  ($email === "") {
   echo "
   <div class='alert alert-danger' role='alert'>
 Email is required!
   </div>";
 }
-if ($usernameLength <= 3) {
+elseif  ($usernameLength <= 3) {
   echo "
   <div class='alert alert-danger' role='alert'>
 Username too short! Must be 3 characters in length.
   </div>";
 }
-if ($passwordLength <= 3) {
+elseif  ($passwordLength <= 3) {
   echo "
   <div class='alert alert-danger' role='alert'>
 Password too short! Must be 3 characters in length.
   </div>";
 }
-
-
 //Check if Password and Retype Password Match
-else {
-
-if ($password != $repassword) {
+elseif  ($password != $repassword) {
   echo "
   <div class='alert alert-danger' role='alert'>
 Password and Retype Password does not match, please try again!
   </div>";
-} else {
-//Insert Data to DB
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+} else  {
+      //Insert Data to DB
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      } else {
+      $sql = "INSERT INTO user (username , password, email)
+      VALUES ('$username' , '$password' , '$email')";
+      if (mysqli_query($conn, $sql)) {
+        echo "
+        <div class='alert alert-success' role='alert'>
+      Succesfully saved!
+        </div>";
+      } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+      }
+      mysqli_close($conn);
+      }
+    }
 }
-$sql = "INSERT INTO user (username , password, email)
-VALUES ('$username' , '$password' , '$email')";
 
-if (mysqli_query($conn, $sql)) {
-  echo "
-  <div class='alert alert-success' role='alert'>
-Succesfully saved!
-  </div>";
-} else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-mysqli_close($conn);
-}
-}
-}
 
 ?>
-
-
   <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
   <div class="form-group">
     <label for="Username">Username: </label>
@@ -107,6 +100,7 @@ mysqli_close($conn);
   </div>
 
   <button type="submit" class="btn btn-primary" name = "submit">Submit</button>
+  <button type="reset" class="btn btn-primary">Clear</button>
 </form>
 </div>
 

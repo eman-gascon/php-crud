@@ -1,7 +1,6 @@
 @font-face {
   src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 }
-
 body {
     background-color: #363636;
     color: azure;
@@ -20,6 +19,9 @@ body {
     background-repeat: no-repeat;
     margin: -15px;
     height: 150px;
+}
+.content-post {
+  color: black;
 }
 #loginSignUp {
   float: right;

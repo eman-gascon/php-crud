@@ -1,8 +1,7 @@
 <?php include 'head.php';?>
-<?php require 'session.php';?>
 <div class="content-body">
-    <h1>Delete</h1>
-    <p>Content</p>
+    <h1>Admin</h1>
+    <p>Welcome <?php echo "$_SESSION[login_user]"; ?></p>
 </div>
 
 <?php include 'footer.php';?>
