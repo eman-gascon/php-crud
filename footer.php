@@ -1,4 +1,4 @@
-<footer>EG 2019</footer>
+<footer><p>Simple CRUD Application using PHP and MySQL</p><p>EG 2020</p></footer>
   </div>
 
     <!-- Optional JavaScript -->

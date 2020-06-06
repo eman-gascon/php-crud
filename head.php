@@ -15,10 +15,10 @@ session_start();
     <!-- Custom CSS-->
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-
+    <script src="js/captcha.js"></script>
     <title>PHP CRUD</title>
   </head>
-  <body>
+  <body onload = "Captcha();">
   <div class="container">
   <div class="content-head">
   <div class="content-head-body">

@@ -8,7 +8,7 @@
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT posted_by, post_date, post_title, post_body FROM post WHERE posted_by = '$login_user'";
+    $sql = "SELECT posted_by, post_date, post_title, post_body FROM post WHERE posted_by = '$login_user' ORDER BY id DESC";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
       // output data of each row

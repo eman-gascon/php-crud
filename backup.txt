@@ -3,8 +3,6 @@
 <div class="content-body">
 <h1>Sign Up</h1>
 
-
-
 <?php
 if (isset($_POST['submit']))
 {
@@ -59,18 +57,12 @@ elseif  ($password != $repassword) {
   <div class='alert alert-danger' role='alert'>
 Password and Retype Password does not match, please try again!
   </div>";
-}
-
-elseif ($_SESSION["captcha"] != $_POST["captcha"])
-{
-    //CAPTHCA is valid; proceed the message: save to database, send by e-mail …
-    echo '<div class="alert alert-danger">CAPTHCA is not valid</div>';
-}
-else  {
+} else  {
       //Insert Data to DB
       if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
       } else {
+
       $query_username = mysqli_query($conn, "SELECT * FROM user WHERE username ='".$username."'");
       $query_email = mysqli_query($conn, "SELECT * FROM user WHERE email ='".$email."'");
 
@@ -82,7 +74,7 @@ else  {
       Username already exists!
         </div>";
       }
-      if (mysqli_num_rows($query_email) > 0) {
+      elseif (mysqli_num_rows($query_email) > 0) {
         echo "
         <div class='alert alert-danger' role='alert'>
       Email already exists!
@@ -100,8 +92,10 @@ else  {
       }
     }
 }
+
+
 ?>
-  <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" onsubmit="validateCaptcha()">
+  <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
   <div class="form-group">
     <label for="Username">Username: </label>
     <input type="text" class="form-control" id="username" placeholder="Enter Username" name = "username">
@@ -121,17 +115,8 @@ else  {
     <input type="email" class="form-control" id="email" placeholder="Enter E-mail" name = "email">
   </div>
 
-<div class="form-group captcha">
-<label for="pwd">Please Enter 3 Black Symbols</label>
-<img src="captcha.php" alt="captcha image" id = "captcha">
-<input type="text" name="captcha" size="3″ maxlength="3″ class="form-control">
-</div>
-
-
-  <div class=" form-group">
-    <button type="submit" class="btn btn-primary" name = "submit" onclick="alert(ValidCaptcha())";>Submit</button>
-    <button type="reset" class="btn btn-primary">Clear</button>
-</div>
+  <button type="submit" class="btn btn-primary" name = "submit">Submit</button>
+  <button type="reset" class="btn btn-primary">Clear</button>
 </form>
 </div>
 

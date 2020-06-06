@@ -57,7 +57,6 @@ footer {
     text-align: center;
 }
 
-
 @media screen and (max-width: 606px) {
     nav  a{
     color: red;

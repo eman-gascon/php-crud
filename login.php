@@ -10,7 +10,6 @@
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-
     //Validation
     if ($username === "") {
       echo "
@@ -18,33 +17,33 @@
     Username is required!
       </div>";
     }
-    if ($password === "") {
+    elseif ($password === "") {
       echo "
       <div class='alert alert-danger' role='alert'>
     Passwored is required!
       </div>";
-    } else {
-    //Query DB
-    if (!$conn) {
-      die("Connection failed: " . mysqli_connect_error());
-    }
+      } else {
+      //Query DB
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
 
-    $sql = "SELECT id  FROM user
-    WHERE username =  '$username' AND password = '$password'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($result);
-    $count = mysqli_num_rows($result);
+      $sql = "SELECT id  FROM user
+      WHERE username =  '$username' AND password = '$password'";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_array($result);
+      $count = mysqli_num_rows($result);
 
-    if ($count == 1) {
-      $_SESSION['login_user'] = $username;
-      header("location: admin.php");
-    } else {
-      echo "
-      <div class='alert alert-danger' role='alert'>
-      Invalid Username or Password, please try again!
-      </div>";
-    }
- }
+      if ($count == 1) {
+        $_SESSION['login_user'] = $username;
+        header("location: admin.php");
+      } else {
+        echo "
+        <div class='alert alert-danger' role='alert'>
+        Invalid Username or Password, please try again!
+        </div>";
+      }
+   }
 }
     ?>
 
