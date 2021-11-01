@@ -3,8 +3,6 @@
 <div class="content-body">
 <h1>Sign Up</h1>
 
-
-
 <?php
 if (isset($_POST['submit']))
 {

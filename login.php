@@ -41,6 +41,7 @@
         echo "
         <div class='alert alert-danger' role='alert'>
         Invalid Username or Password, please try again!
+          $username ,   $password
         </div>";
       }
    }
